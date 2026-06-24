@@ -1,6 +1,0 @@
-{
-  "name": "BrainBlitz AI",
-  "description": "Transforme estudos em um jogo viciante. Flashcards inteligentes e quizzes sequenciais com inteligência artificial para dominar qualquer assunto.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
