@@ -1,25 +1,43 @@
 # Notas de ajuste para GitHub Pages
 
-## Resumo técnico
+Esta versão foi ajustada para rodar como aplicação estática no GitHub Pages.
 
-A aplicação foi convertida do padrão Google AI Studio/Node backend para um app estático Vite + React. Agora ela pode ser publicada no GitHub Pages sem servidor, sem `GEMINI_API_KEY` e sem chamadas para `/api/*`.
+## O que mudou
 
-## Arquivos principais alterados
+- A aplicação não depende mais de `server.ts`, Express, rotas `/api/*`, banco JSON local ou `GEMINI_API_KEY`.
+- A camada de IA foi substituída temporariamente por fallbacks locais em `src/services/geminiService.ts` e `src/data/fallbackSessions.ts`.
+- O build agora gera os arquivos finais diretamente na pasta `docs/`.
+- A pasta `docs/` já contém `index.html`, `assets/` e `.nojekyll`, pronta para publicação pelo GitHub Pages.
+- O `vite.config.ts` usa `base: './'`, para funcionar em caminhos de projeto como `https://registsv.github.io/brain-blitz/`.
 
-- `src/services/geminiService.ts`: substitui chamadas à IA/backend por fallbacks locais.
-- `vite.config.ts`: adiciona `base: './'` para funcionar no subcaminho do GitHub Pages.
-- `package.json`: remove scripts e dependências de backend; mantém apenas frontend/Vite.
-- `README.md`: atualiza instruções de build e deploy.
-- `.github/workflows/deploy.yml`: adiciona workflow para publicar automaticamente no GitHub Pages.
-- `src/components/HomeHeader.tsx`, `src/App.tsx`, `src/components/QuizComponent.tsx`, `src/components/AILoadingScreen.tsx`: ajusta textos para indicar modo estático/local em vez de IA ativa.
-- `src/components/FlashcardComponent.tsx` e `src/components/QuizComponent.tsx`: aceitam diagramas locais em `data:image/svg+xml`.
+## Correção para página em branco
 
-## Arquivos removidos
+Se o GitHub Pages publicar a raiz do repositório (`main` + `/root`), ele servirá o `index.html` de desenvolvimento do Vite. Esse arquivo aponta para `src/main.tsx`, que o navegador não executa diretamente em produção. O resultado típico é página branca.
 
-- `server.ts`: não é compatível com GitHub Pages.
-- `sessions_db.json`: dependia de backend/local file system.
-- `src/services/dbService.ts`: dependia de `fs`/Node, incompatível com frontend estático.
+Use uma das duas opções abaixo.
 
-## Estado da IA
+### Opção recomendada sem Actions
 
-A IA foi intencionalmente desativada nesta versão. O ponto de reintegração futura é `src/services/geminiService.ts`, preservando os fallbacks locais como rede de segurança.
+Em **Settings > Pages**:
+
+1. Source: `Deploy from a branch`
+2. Branch: `main`
+3. Folder: `/docs`
+4. Save
+
+### Opção com GitHub Actions
+
+Em **Settings > Pages**:
+
+1. Source: `GitHub Actions`
+2. Faça push do repositório com `.github/workflows/deploy.yml`
+3. O workflow executará `npm ci`, `npm run build` e publicará `./docs`
+
+## Comandos locais
+
+```bash
+npm ci
+npm run build
+```
+
+Após o build, a versão publicada fica em `docs/`.
