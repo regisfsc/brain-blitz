@@ -1,0 +1,6 @@
+{
+  "name": "BrainBlitz",
+  "description": "Flashcards e quizzes em versão estática para GitHub Pages, usando fallbacks locais enquanto a camada de IA não está conectada.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

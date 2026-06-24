@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fredoka", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-brand-primary: #FF4D79; /* Bubbly pink */
+  --color-brand-secondary: #4F46E5; /* Playful Indigo */
+  --color-brand-accent: #10B981; /* Cheerful Green */
+  --color-brand-yellow: #FBBF24; /* Happy Sun Yellow */
+  --color-study-bg: #FFFDF5; /* Warm Jovial Cream */
+  --color-brand-dark: #1E1B4B; /* Deep Indigo Purple-Dark */
+}
+
+@layer base {
+  body {
+    @apply bg-study-bg text-brand-dark font-sans antialiased selection:bg-brand-primary/20 selection:text-brand-dark;
+    background-image: 
+      radial-gradient(at 10% 20%, rgba(255, 77, 121, 0.08) 0px, transparent 40%),
+      radial-gradient(at 90% 10%, rgba(79, 70, 229, 0.08) 0px, transparent 40%),
+      radial-gradient(at 50% 80%, rgba(251, 191, 36, 0.07) 0px, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  /* Custom playful candy scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FFFDF5;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #E0DBF6;
+    border-radius: 999px;
+    border: 2px solid #FFFDF5;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FF4D79;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .bg-mesh {
+    background-image: 
+      radial-gradient(at 20% 10%, rgba(255, 77, 121, 0.12) 0px, transparent 45%),
+      radial-gradient(at 80% 20%, rgba(79, 70, 229, 0.1) 0px, transparent 45%),
+      radial-gradient(at 40% 90%, rgba(251, 191, 36, 0.08) 0px, transparent 45%);
+  }
+
+  /* High Quality Jovial Card Style with 3D Border Effects */
+  .glass-card {
+    background: #FFFFFF;
+    border: 3px solid #1E1B4B;
+    border-radius: 2rem;
+    box-shadow: 0px 8px 0px 0px #1E1B4B;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+  }
+
+  .glass-card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 12px 0px 0px #1E1B4B;
+  }
+
+  /* Jovial Button Primary (Hot Pink Candy Style with 3D push feel) */
+  .juv-btn-primary {
+    background: #FF4D79;
+    color: #FFFFFF;
+    border: 3px solid #1E1B4B;
+    box-shadow: 0px 5px 0px 0px #1E1B4B;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  .juv-btn-primary:hover {
+    background: #FF668C;
+    transform: translateY(-2px);
+    box-shadow: 0px 7px 0px 0px #1E1B4B;
+  }
+  .juv-btn-primary:active {
+    transform: translateY(3px);
+    box-shadow: 0px 2px 0px 0px #1E1B4B;
+  }
+
+  /* Jovial Button Secondary (Playful Blue/Indigo) */
+  .juv-btn-secondary {
+    background: #4F46E5;
+    color: #FFFFFF;
+    border: 3px solid #1E1B4B;
+    box-shadow: 0px 5px 0px 0px #1E1B4B;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  .juv-btn-secondary:hover {
+    background: #6366F1;
+    transform: translateY(-2px);
+    box-shadow: 0px 7px 0px 0px #1E1B4B;
+  }
+  .juv-btn-secondary:active {
+    transform: translateY(3px);
+    box-shadow: 0px 2px 0px 0px #1E1B4B;
+  }
+
+  /* Jovial Button Yellow */
+  .juv-btn-yellow {
+    background: #FBBF24;
+    color: #1E1B4B;
+    border: 3px solid #1E1B4B;
+    box-shadow: 0px 5px 0px 0px #1E1B4B;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  .juv-btn-yellow:hover {
+    background: #FCD34D;
+    transform: translateY(-2px);
+    box-shadow: 0px 7px 0px 0px #1E1B4B;
+  }
+  .juv-btn-yellow:active {
+    transform: translateY(3px);
+    box-shadow: 0px 2px 0px 0px #1E1B4B;
+  }
+
+  /* Jovial Button Accent (Light/Minimalist Outline) */
+  .juv-btn-neutral {
+    background: #FFFFFF;
+    color: #1E1B4B;
+    border: 3px solid #1E1B4B;
+    box-shadow: 0px 4px 0px 0px #1E1B4B;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  .juv-btn-neutral:hover {
+    background: #F3F4F6;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 0px 0px #1E1B4B;
+  }
+  .juv-btn-neutral:active {
+    transform: translateY(2px);
+    box-shadow: 0px 2px 0px 0px #1E1B4B;
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 35px rgba(79, 70, 229, 0.12);
+  }
+  .glow-pink {
+    box-shadow: 0 0 35px rgba(255, 77, 121, 0.12);
+  }
+  .glow-yellow {
+    box-shadow: 0 0 35px rgba(251, 191, 36, 0.12);
+  }
+}
